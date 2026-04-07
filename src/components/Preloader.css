@@ -1,0 +1,139 @@
+.preloader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  pointer-events: none;
+  animation: hideLoader 0s linear 2.6s forwards;
+}
+
+.bg-plate {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50vh;
+  background-color: var(--color-beige);
+  z-index: 10;
+  transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+  transition-delay: 2s;
+}
+
+.bg-plate.top-plate {
+  top: 0;
+  transform-origin: top;
+  animation: slideUp 0.6s cubic-bezier(0.85, 0, 0.15, 1) 2s forwards;
+}
+
+.bg-plate.bottom-plate {
+  bottom: 0;
+  transform-origin: bottom;
+  animation: slideDown 0.6s cubic-bezier(0.85, 0, 0.15, 1) 2s forwards;
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
+@keyframes slideDown {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes hideLoader {
+  to { visibility: hidden; }
+}
+
+/* Math Lines around the star */
+.math-lines-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.math-lines-svg {
+  width: 150vw;
+  height: 150vh;
+  position: absolute;
+  animation: scaleDownFade 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.math-wave {
+  animation: shiftLeft 3s linear infinite;
+}
+
+.math-wave-inverse {
+  animation: shiftRight 4s linear infinite;
+}
+
+.math-parabola {
+  animation: waveParabola 3s ease-in-out infinite alternate;
+}
+
+.math-cubic {
+  animation: waveCubic 4s ease-in-out infinite alternate;
+}
+
+@keyframes scaleDownFade {
+  0% { transform: scale(1.5); opacity: 1; }
+  80% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+@keyframes shiftLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-500px); }
+}
+
+@keyframes shiftRight {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(500px); }
+}
+
+@keyframes waveParabola {
+  0% { transform: translateY(50px) scaleY(1); }
+  100% { transform: translateY(-50px) scaleY(1.2); }
+}
+
+@keyframes waveCubic {
+  0% { transform: translateY(-50px) translateX(-50px); }
+  100% { transform: translateY(50px) translateX(50px); }
+}
+
+/* Star styling */
+.star-wrapper {
+  z-index: 30;
+  width: 20vw;
+  height: 20vw;
+  min-width: 150px;
+  min-height: 150px;
+  animation: starRotate 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards, starPop 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) 1.6s forwards;
+}
+
+.y2k-star {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes starRotate {
+  0% { transform: scale(0) rotate(-180deg); }
+  40% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1) rotate(90deg); } /* Keep it simple */
+}
+
+@keyframes starPop {
+  0% { transform: scale(1) rotate(90deg); opacity: 1; }
+  100% { transform: scale(3) rotate(135deg); opacity: 0; }
+}

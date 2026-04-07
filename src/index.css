@@ -1,0 +1,141 @@
+:root {
+  --color-beige: #F5F0E6;
+  --color-brown: #8B6B4A;
+  --color-brown-dark: #5A4228; /* For better text readability */
+  --color-yellow: #FCEFB4;
+  
+  --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+body {
+  background-color: var(--color-beige);
+  color: var(--color-brown-dark);
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: var(--color-brown-dark);
+}
+
+a {
+  color: var(--color-brown-dark);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+button {
+  font-family: var(--font-primary);
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+  border-radius: 2px; /* Very subtle, functional border-radius */
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background-color: var(--color-yellow);
+  color: var(--color-brown-dark);
+  border: 2px solid var(--color-brown-dark);
+}
+
+.btn-primary:hover {
+  background-color: #f7e69f; /* Slightly darker yellow */
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-brown-dark);
+  border: 2px solid var(--color-brown-dark);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-brown);
+  color: var(--color-beige);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Strict Utilitarian constraints */
+/* No shadows, gradients, or glassmorphism */
+img, video, div, section {
+  box-shadow: none !important;
+  border-radius: 0;
+}
+
+.animated-text {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawMath 2.5s forwards ease-in-out;
+  animation-delay: 3.5s; /* Wait for preloader */
+}
+
+.animated-text-fill {
+  opacity: 0;
+  animation: fillMath 1.5s forwards ease-in-out;
+  animation-delay: 5.5s; /* Triggers right after drawMath */
+}
+
+@keyframes drawMath {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes fillMath {
+  to { opacity: 1; }
+}
+
+.fade-in-delayed {
+  opacity: 0;
+  animation: simpleFade 1.5s forwards cubic-bezier(0.19, 1, 0.22, 1);
+  animation-delay: 6s; /* Wait for entire sequence to finish */
+}
+
+@keyframes simpleFade {
+  to { opacity: 1; }
+}
+
+@media (max-width: 900px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
+@keyframes highlight-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(252, 239, 180, 0); transform: scale(1); }
+  50% { box-shadow: 0 0 0 20px rgba(252, 239, 180, 0.4); transform: scale(1.05); }
+  100% { box-shadow: 0 0 0 0 rgba(252, 239, 180, 0); transform: scale(1); }
+}
+
+.highlight-pulse {
+  animation: highlight-pulse 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 2;
+  border-color: var(--color-brown) !important;
+  background-color: var(--color-beige) !important;
+  color: var(--color-brown) !important;
+  font-weight: 900 !important;
+}
