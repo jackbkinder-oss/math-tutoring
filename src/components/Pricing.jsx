@@ -1,5 +1,4 @@
-import React, { useRef, useCallback } from 'react';
-import Cal from '@calcom/embed-react';
+import React from 'react';
 import { InlineMath } from './KaTeX';
 import { motion } from 'framer-motion';
 import MagneticButton from './MagneticButton';
@@ -13,17 +12,6 @@ const navigateToPayment = () => {
 };
 
 const Pricing = () => {
-  const calRef = useRef(null);
-
-  const handleWheel = useCallback((e) => {
-    if (calRef.current) {
-      const iframe = calRef.current.querySelector('iframe');
-      if (iframe) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    }
-  }, []);
 
   return (
     <section id="pricing" style={styles.section}>
@@ -97,18 +85,13 @@ const Pricing = () => {
             <div style={styles.calendarHeader}>
               <h3 style={styles.calendarTitle}>Available Times</h3>
             </div>
-            <div
-              ref={calRef}
-              style={styles.calendarBody}
-              onWheel={(e) => { e.preventDefault(); e.stopPropagation(); }}
-            >
-              <div style={styles.calendarInner}>
-                <Cal
-                  calLink="jackkinder/booked-session"
-                  config={{ layout: 'month_view', theme: 'light' }}
-                  style={{ width: '100%', height: '800px' }}
-                />
-              </div>
+            <div style={styles.calendarBody}>
+              <iframe
+                src="https://calendar.google.com/calendar/embed?src=a54a3efd8277708d5283bd0c9a59bf3d41d495203053872514a20a6e801d528f%40group.calendar.google.com&ctz=Australia%2FSydney"
+                style={{ border: 0, width: '100%', height: '100%' }}
+                scrolling="no"
+                title="Availability Calendar"
+              />
             </div>
           </motion.div>
         </div>
@@ -205,16 +188,7 @@ const styles = {
   },
   calendarBody: {
     flex: 1,
-    overflow: 'hidden',
-    position: 'relative',
     height: '600px',
-  },
-  calendarInner: {
-    position: 'absolute',
-    top: '-120px',
-    left: 0,
-    right: 0,
-    bottom: '-200px',
   },
 };
 
