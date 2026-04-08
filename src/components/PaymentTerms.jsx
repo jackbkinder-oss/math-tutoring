@@ -37,7 +37,7 @@ const PaymentTerms = () => {
             <p style={styles.text}>Cash is accepted for <strong>in-person sessions only</strong>.</p>
             <ol style={styles.list}>
               <li style={styles.listItem}>Email <a href="mailto:jackbkinder@gmail.com" style={styles.link}>jackbkinder@gmail.com</a> to arrange your session</li>
-              <li style={styles.listItem}>Bring $99 in cash to your session</li>
+              <li style={styles.listItem}>Bring $89 in cash to your session (10% off)</li>
             </ol>
           </div>
         </div>
@@ -65,9 +65,9 @@ const PaymentTerms = () => {
               All bookings require a minimum of 24 hours notice for cancellation or rescheduling.
             </p>
 
-            <h3 style={styles.subheading}>Online / Bank Transfer / BTC Sessions</h3>
+            <h3 style={styles.subheading}>BTC Sessions</h3>
             <p style={styles.text}>
-              Cancellations with less than 24 hours notice are <strong>non-refundable</strong>. The full $99 fee is forfeited.
+              Cancellations with less than 24 hours notice are <strong>non-refundable</strong>. The full $89 fee is forfeited.
             </p>
 
             <h3 style={styles.subheading}>In-Person Cash Sessions</h3>
@@ -75,8 +75,8 @@ const PaymentTerms = () => {
               If you cancel an in-person cash session with less than 24 hours notice, you must either:
             </p>
             <ul style={styles.list}>
-              <li style={styles.listItem}>Pay $99 via online bank transfer before your next session, <strong>OR</strong></li>
-              <li style={styles.listItem}>Pay double ($198) in cash at your next in-person session to cover both the missed and upcoming session</li>
+              <li style={styles.listItem}>Pay $89 via online bank transfer before your next session, <strong>OR</strong></li>
+              <li style={styles.listItem}>Pay double ($178) in cash at your next in-person session to cover both the missed and upcoming session</li>
             </ul>
           </div>
         </div>

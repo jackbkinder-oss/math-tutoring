@@ -47,7 +47,7 @@ const Pricing = () => {
                 </MagneticButton>
                 <MagneticButton style={{ width: '100%' }}>
                   <button className="btn-secondary" style={{width: '100%'}} onClick={() => { window.history.pushState({}, '', '/payment'); window.dispatchEvent(new Event('routeChange')); window.scrollTo(0,0); }}>
-                    Pay with Cash / BTC
+                    Pay with Cash / BTC (-10%)
                   </button>
                 </MagneticButton>
               </div>
