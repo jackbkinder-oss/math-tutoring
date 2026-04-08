@@ -3,15 +3,25 @@ import { InlineMath } from './KaTeX';
 import { motion } from 'framer-motion';
 import MagneticButton from './MagneticButton';
 
-import { openCalBooking } from './BookingModal';
+const navigateToPayment = () => {
+  window.history.pushState({}, '', '/payment');
+  window.dispatchEvent(new Event('routeChange'));
+  window.scrollTo(0, 0);
+};
+
+const packages = [
+  { name: 'Single Session', desc: 'One-off targeted intensive.', sessions: 1, price: 99, savings: null },
+  { name: '3-Session Pack', desc: 'Build momentum over weeks.', sessions: 3, price: 297, savings: null },
+  { name: '5-Session Pack', desc: 'Commit to real progress.', sessions: 5, price: 470, savings: '5% Off' },
+  { name: '10-Session Bundle', desc: 'Master the entire syllabus term.', sessions: 10, price: 891, savings: '1 Free' },
+];
 
 const Pricing = () => {
-
   return (
     <section id="pricing" style={styles.section}>
       <div className="container">
-        <motion.h2 
-          style={styles.Title}
+        <motion.h2
+          style={styles.title}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
@@ -19,67 +29,50 @@ const Pricing = () => {
         >
           <InlineMath math="\mathbb{I}" />nvestment Plans
         </motion.h2>
-        
+
         <div style={styles.grid}>
-          
-          {/* Single Session Card */}
-          <motion.div 
-            style={styles.card}
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
-          >
-            <div style={styles.cardTop}>
-              <h3 style={styles.planName}>Single Session</h3>
-              <p style={styles.planDesc}>One-off targeted 1-on-1 intensive.</p>
-              <div style={styles.priceContainer}>
-                <span style={styles.currency}>$</span>
-                <span style={styles.amount}>99</span>
+          {packages.map((pkg, i) => (
+            <motion.div
+              key={pkg.name}
+              style={{
+                ...styles.card,
+                ...(i === 3 ? { backgroundColor: 'var(--color-yellow)' } : {}),
+              }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: [0.19, 1, 0.22, 1] }}
+            >
+              <div style={{
+                ...styles.cardTop,
+                ...(i === 3 ? { backgroundColor: 'var(--color-yellow)', borderBottom: '4px solid var(--color-brown)' } : {}),
+              }}>
+                <h3 style={styles.planName}>{pkg.name}</h3>
+                <p style={styles.planDesc}>{pkg.desc}</p>
+                <div style={styles.priceContainer}>
+                  <span style={styles.currency}>$</span>
+                  <span style={styles.amount}>{pkg.price}</span>
+                  {pkg.savings && (
+                    <span style={styles.savings}>{pkg.savings}</span>
+                  )}
+                </div>
               </div>
-            </div>
-            <div style={styles.cardBottom}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div style={{
+                ...styles.cardBottom,
+                ...(i === 3 ? { backgroundColor: 'var(--color-beige)' } : {}),
+              }}>
                 <MagneticButton style={{ width: '100%' }}>
-                  <button className="btn-primary" style={{width: '100%'}} onClick={() => openCalBooking('single-session-99')}>
-                    Book Single Session
+                  <button
+                    className="btn-primary"
+                    style={{ width: '100%' }}
+                    onClick={navigateToPayment}
+                  >
+                    Get Started
                   </button>
                 </MagneticButton>
-                <MagneticButton style={{ width: '100%' }}>
-                  <button className="btn-secondary" style={{width: '100%'}} onClick={() => { window.history.pushState({}, '', '/payment'); window.dispatchEvent(new Event('routeChange')); window.scrollTo(0,0); }}>
-                    Pay with Cash / BTC (-10%)
-                  </button>
-                </MagneticButton>
               </div>
-            </div>
-          </motion.div>
-
-          {/* Bundle Card */}
-          <motion.div
-            style={{...styles.card, backgroundColor: 'var(--color-yellow)'}}
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.19, 1, 0.22, 1] }}
-          >
-            <div style={{...styles.cardTop, borderBottom: '4px solid var(--color-brown)', backgroundColor: 'var(--color-yellow)'}}>
-              <h3 style={styles.planName}>10-Session Bundle</h3>
-              <p style={styles.planDesc}>Master the entire syllabus term.</p>
-              <div style={styles.priceContainer}>
-                <span style={styles.currency}>$</span>
-                <span style={styles.amount}>891</span>
-                <span style={styles.savings}>1 Session Free</span>
-              </div>
-            </div>
-            <div style={{...styles.cardBottom, backgroundColor: 'var(--color-beige)'}}>
-              <MagneticButton style={{ width: '100%' }}>
-                <a href="mailto:jackbkinder@gmail.com?subject=10-Session Bundle Enquiry" className="btn-primary" style={{width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none'}}>
-                  Email Me
-                </a>
-              </MagneticButton>
-            </div>
-          </motion.div>
-
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -92,7 +85,7 @@ const styles = {
     backgroundColor: 'var(--color-beige)',
     borderBottom: '2px solid var(--color-brown)',
   },
-  Title: {
+  title: {
     fontSize: '2.5rem',
     marginBottom: '4rem',
     textAlign: 'center',
@@ -100,9 +93,9 @@ const styles = {
   },
   grid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-    gap: '3rem',
-    maxWidth: '900px',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+    gap: '2rem',
+    maxWidth: '1100px',
     margin: '0 auto',
   },
   card: {
@@ -112,7 +105,7 @@ const styles = {
     backgroundColor: 'var(--color-beige)',
   },
   cardTop: {
-    padding: '3rem 2rem',
+    padding: '2.5rem 1.5rem',
     borderBottom: '4px solid var(--color-brown)',
     textAlign: 'center',
     display: 'flex',
@@ -120,14 +113,14 @@ const styles = {
     flex: '1',
   },
   planName: {
-    fontSize: '1.75rem',
-    marginBottom: '0.5rem',
+    fontSize: '1.5rem',
     margin: 0,
   },
   planDesc: {
     fontWeight: '500',
     opacity: 0.8,
     marginBottom: '2rem',
+    fontSize: '0.9rem',
   },
   priceContainer: {
     display: 'flex',
@@ -136,12 +129,12 @@ const styles = {
     marginTop: 'auto',
   },
   currency: {
-    fontSize: '2rem',
+    fontSize: '1.75rem',
     fontWeight: '800',
     marginTop: '0.5rem',
   },
   amount: {
-    fontSize: '5rem',
+    fontSize: '4rem',
     fontWeight: '800',
     lineHeight: '1',
     letterSpacing: '-0.05em',
@@ -151,14 +144,14 @@ const styles = {
     color: 'var(--color-beige)',
     padding: '0.25rem 0.5rem',
     fontWeight: 'bold',
-    fontSize: '0.8rem',
+    fontSize: '0.75rem',
     alignSelf: 'center',
-    marginLeft: '1rem',
+    marginLeft: '0.75rem',
   },
   cardBottom: {
-    padding: '2rem',
+    padding: '1.5rem',
     backgroundColor: 'var(--color-beige)',
-  }
+  },
 };
 
 export default Pricing;
