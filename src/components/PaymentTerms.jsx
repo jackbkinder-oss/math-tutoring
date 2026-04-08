@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Cal from '@calcom/embed-react';
 import { InlineMath } from './KaTeX';
 import { motion } from 'framer-motion';
 
@@ -63,23 +62,6 @@ const PaymentTerms = () => {
                 ))}
               </tbody>
             </table>
-          </div>
-        </div>
-
-        {/* Availability Preview */}
-        <div style={styles.card}>
-          <div style={styles.cardHeader}>
-            <h2 style={styles.cardTitle}>My Availability</h2>
-          </div>
-          <div style={styles.cardBody}>
-            <p style={{...styles.text, marginBottom: '1.5rem'}}>Preview available time slots before purchasing. You'll book your session(s) after payment.</p>
-            <div style={{ border: '2px solid var(--color-brown)', overflow: 'hidden' }}>
-              <Cal
-                calLink="jackkinder/single-session-99"
-                config={{ layout: 'month_view', theme: 'light' }}
-                style={{ width: '100%', height: '500px', overflow: 'auto' }}
-              />
-            </div>
           </div>
         </div>
 

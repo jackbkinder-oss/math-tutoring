@@ -1,20 +1,16 @@
 import React from 'react';
+import Cal from '@calcom/embed-react';
 import { InlineMath } from './KaTeX';
 import { motion } from 'framer-motion';
 import MagneticButton from './MagneticButton';
+
+const STRIPE_LINK = 'https://buy.stripe.com/test_bJeaEYdsf2Dv0qo7N70Ba00';
 
 const navigateToPayment = () => {
   window.history.pushState({}, '', '/payment');
   window.dispatchEvent(new Event('routeChange'));
   window.scrollTo(0, 0);
 };
-
-const packages = [
-  { name: 'Single Session', desc: 'One-off targeted intensive.', sessions: 1, price: 99, savings: null },
-  { name: '3-Session Pack', desc: 'Build momentum over weeks.', sessions: 3, price: 297, savings: null },
-  { name: '5-Session Pack', desc: 'Commit to real progress.', sessions: 5, price: 470, savings: '5% Off' },
-  { name: '10-Session Bundle', desc: 'Master the entire syllabus term.', sessions: 10, price: 891, savings: '1 Free' },
-];
 
 const Pricing = () => {
   return (
@@ -30,50 +26,69 @@ const Pricing = () => {
           <InlineMath math="\mathbb{I}" />nvestment Plans
         </motion.h2>
 
-        <div style={styles.grid}>
-          {packages.map((pkg, i) => (
-            <motion.div
-              key={pkg.name}
-              style={{
-                ...styles.card,
-                ...(i === 3 ? { backgroundColor: 'var(--color-yellow)' } : {}),
-              }}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.5, delay: i * 0.1, ease: [0.19, 1, 0.22, 1] }}
-            >
-              <div style={{
-                ...styles.cardTop,
-                ...(i === 3 ? { backgroundColor: 'var(--color-yellow)', borderBottom: '4px solid var(--color-brown)' } : {}),
-              }}>
-                <h3 style={styles.planName}>{pkg.name}</h3>
-                <p style={styles.planDesc}>{pkg.desc}</p>
-                <div style={styles.priceContainer}>
-                  <span style={styles.currency}>$</span>
-                  <span style={styles.amount}>{pkg.price}</span>
-                  {pkg.savings && (
-                    <span style={styles.savings}>{pkg.savings}</span>
-                  )}
-                </div>
-              </div>
-              <div style={{
-                ...styles.cardBottom,
-                ...(i === 3 ? { backgroundColor: 'var(--color-beige)' } : {}),
-              }}>
-                <MagneticButton style={{ width: '100%' }}>
-                  <button
-                    className="btn-primary"
-                    style={{ width: '100%' }}
-                    onClick={navigateToPayment}
-                  >
-                    Get Started
-                  </button>
-                </MagneticButton>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          style={styles.card}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
+        >
+          <div style={styles.cardTop}>
+            <h3 style={styles.planName}>1-on-1 Tutoring</h3>
+            <div style={styles.priceContainer}>
+              <span style={styles.currency}>$</span>
+              <span style={styles.amount}>99</span>
+              <span style={styles.perSession}>/session</span>
+            </div>
+            <p style={styles.discounts}>
+              5+ sessions: 5% off (use code <strong>5PACK</strong>) · 10+ sessions: 10% off (use code <strong>10PACK</strong>)
+            </p>
+          </div>
+          <div style={styles.cardBottom}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <MagneticButton style={{ width: '100%' }}>
+                <a
+                  href={STRIPE_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                  style={{ width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none' }}
+                >
+                  Pay Online (Stripe)
+                </a>
+              </MagneticButton>
+              <MagneticButton style={{ width: '100%' }}>
+                <button
+                  className="btn-secondary"
+                  style={{ width: '100%' }}
+                  onClick={navigateToPayment}
+                >
+                  Pay with Cash / BTC
+                </button>
+              </MagneticButton>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Availability Calendar */}
+        <motion.div
+          style={{ ...styles.calendarCard, marginTop: '3rem' }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.19, 1, 0.22, 1] }}
+        >
+          <div style={styles.calendarHeader}>
+            <h3 style={styles.calendarTitle}>Available Times</h3>
+          </div>
+          <div style={styles.calendarBody}>
+            <Cal
+              calLink="jackkinder/booked-session"
+              config={{ layout: 'month_view', theme: 'light' }}
+              style={{ width: '100%', height: '500px', overflow: 'auto' }}
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -91,66 +106,75 @@ const styles = {
     textAlign: 'center',
     letterSpacing: '-0.02em',
   },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-    gap: '2rem',
-    maxWidth: '1100px',
-    margin: '0 auto',
-  },
   card: {
     border: '4px solid var(--color-brown)',
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: 'var(--color-beige)',
+    maxWidth: '500px',
+    margin: '0 auto',
   },
   cardTop: {
-    padding: '2.5rem 1.5rem',
+    padding: '3rem 2rem',
     borderBottom: '4px solid var(--color-brown)',
     textAlign: 'center',
-    display: 'flex',
-    flexDirection: 'column',
-    flex: '1',
   },
   planName: {
-    fontSize: '1.5rem',
-    margin: 0,
-  },
-  planDesc: {
-    fontWeight: '500',
-    opacity: 0.8,
-    marginBottom: '2rem',
-    fontSize: '0.9rem',
+    fontSize: '1.75rem',
+    margin: '0 0 1rem 0',
   },
   priceContainer: {
     display: 'flex',
-    alignItems: 'flex-start',
+    alignItems: 'flex-end',
     justifyContent: 'center',
-    marginTop: 'auto',
+    marginBottom: '1.5rem',
   },
   currency: {
-    fontSize: '1.75rem',
+    fontSize: '2rem',
     fontWeight: '800',
-    marginTop: '0.5rem',
+    marginBottom: '0.6rem',
   },
   amount: {
-    fontSize: '4rem',
+    fontSize: '5rem',
     fontWeight: '800',
     lineHeight: '1',
     letterSpacing: '-0.05em',
   },
-  savings: {
-    backgroundColor: 'var(--color-brown-dark)',
-    color: 'var(--color-beige)',
-    padding: '0.25rem 0.5rem',
-    fontWeight: 'bold',
-    fontSize: '0.75rem',
-    alignSelf: 'center',
-    marginLeft: '0.75rem',
+  perSession: {
+    fontSize: '1.2rem',
+    fontWeight: '600',
+    marginBottom: '0.6rem',
+    marginLeft: '0.25rem',
+    opacity: 0.6,
+  },
+  discounts: {
+    fontSize: '0.85rem',
+    fontWeight: '500',
+    opacity: 0.7,
+    margin: 0,
   },
   cardBottom: {
-    padding: '1.5rem',
+    padding: '2rem',
     backgroundColor: 'var(--color-beige)',
+  },
+  calendarCard: {
+    border: '4px solid var(--color-brown)',
+    maxWidth: '800px',
+    margin: '3rem auto 0',
+  },
+  calendarHeader: {
+    padding: '1.25rem 1.5rem',
+    backgroundColor: 'var(--color-brown)',
+    borderBottom: '4px solid var(--color-brown)',
+  },
+  calendarTitle: {
+    margin: 0,
+    fontSize: '1.3rem',
+    color: 'var(--color-beige)',
+  },
+  calendarBody: {
+    padding: '1.5rem',
+    overflow: 'hidden',
   },
 };
 
