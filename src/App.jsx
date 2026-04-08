@@ -10,6 +10,7 @@ import AnimationGallery from './components/AnimationGallery';
 import Footer from './components/Footer';
 import LenisWrapper from './components/LenisWrapper';
 import CalEmbed from './components/BookingModal';
+import PaymentTerms from './components/PaymentTerms';
 import { animations, selectedPair } from './components/MathAnimations';
 
 const selected = [animations[selectedPair[0]], animations[selectedPair[1]]];
@@ -43,6 +44,7 @@ function App() {
   const renderPage = () => {
     if (currentPath === '/courses') return <Courses />;
     if (currentPath === '/animations') return <AnimationGallery />;
+    if (currentPath === '/payment') return <PaymentTerms />;
     if (currentPath === '/tutoring') return (
       <section style={{ padding: '6rem 2rem', minHeight: '60vh' }}>
         <div className="container">

@@ -46,9 +46,9 @@ const Pricing = () => {
                   </button>
                 </MagneticButton>
                 <MagneticButton style={{ width: '100%' }}>
-                  <a href="mailto:jackbkinder@gmail.com?subject=Single Session - Bitcoin Payment" className="btn-secondary" style={{width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none'}}>
-                    Pay with Bitcoin
-                  </a>
+                  <button className="btn-secondary" style={{width: '100%'}} onClick={() => { window.history.pushState({}, '', '/payment'); window.dispatchEvent(new Event('routeChange')); window.scrollTo(0,0); }}>
+                    Pay with Cash / BTC
+                  </button>
                 </MagneticButton>
               </div>
             </div>
