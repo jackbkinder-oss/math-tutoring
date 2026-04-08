@@ -100,14 +100,15 @@ const Pricing = () => {
             <div
               ref={calRef}
               style={styles.calendarBody}
-              onWheel={handleWheel}
+              onWheel={(e) => { e.preventDefault(); e.stopPropagation(); }}
             >
-              <div style={styles.calendarOverlay} />
-              <Cal
-                calLink="jackkinder/booked-session"
-                config={{ layout: 'month_view', theme: 'light' }}
-                style={{ width: '100%', height: '100%', minHeight: '600px' }}
-              />
+              <div style={styles.calendarInner}>
+                <Cal
+                  calLink="jackkinder/booked-session"
+                  config={{ layout: 'month_view', theme: 'light' }}
+                  style={{ width: '100%', height: '800px' }}
+                />
+              </div>
             </div>
           </motion.div>
         </div>
@@ -206,15 +207,14 @@ const styles = {
     flex: 1,
     overflow: 'hidden',
     position: 'relative',
+    height: '600px',
   },
-  calendarOverlay: {
+  calendarInner: {
     position: 'absolute',
-    top: 0,
+    top: '-120px',
     left: 0,
     right: 0,
-    bottom: 0,
-    zIndex: 10,
-    cursor: 'default',
+    bottom: '-200px',
   },
 };
 
