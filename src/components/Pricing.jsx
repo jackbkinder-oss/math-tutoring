@@ -39,11 +39,18 @@ const Pricing = () => {
               </div>
             </div>
             <div style={styles.cardBottom}>
-              <MagneticButton style={{ width: '100%' }}>
-                <button className="btn-primary" style={{width: '100%'}} onClick={() => openCalBooking('single-session-99')}>
-                  Book Single Session
-                </button>
-              </MagneticButton>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <MagneticButton style={{ width: '100%' }}>
+                  <button className="btn-primary" style={{width: '100%'}} onClick={() => openCalBooking('single-session-99')}>
+                    Book Single Session
+                  </button>
+                </MagneticButton>
+                <MagneticButton style={{ width: '100%' }}>
+                  <a href="mailto:jackbkinder@gmail.com?subject=Single Session - Bitcoin Payment" className="btn-secondary" style={{width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none'}}>
+                    Pay with Bitcoin
+                  </a>
+                </MagneticButton>
+              </div>
             </div>
           </motion.div>
 
@@ -65,21 +72,11 @@ const Pricing = () => {
               </div>
             </div>
             <div style={{...styles.cardBottom, backgroundColor: 'var(--color-beige)'}}>
-              <p style={{ fontSize: '0.95rem', fontWeight: '500', marginBottom: '1rem', textAlign: 'center' }}>
-                Get in touch to arrange your bundle:
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                <MagneticButton style={{ width: '100%' }}>
-                  <a href="mailto:jackbkinder@gmail.com?subject=10-Session Bundle Enquiry" className="btn-primary" style={{width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none'}}>
-                    Email Me
-                  </a>
-                </MagneticButton>
-                <MagneticButton style={{ width: '100%' }}>
-                  <a href="tel:0410708275" className="btn-secondary" style={{width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none'}}>
-                    Call 0410 708 275
-                  </a>
-                </MagneticButton>
-              </div>
+              <MagneticButton style={{ width: '100%' }}>
+                <a href="mailto:jackbkinder@gmail.com?subject=10-Session Bundle Enquiry" className="btn-primary" style={{width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none'}}>
+                  Email Me
+                </a>
+              </MagneticButton>
             </div>
           </motion.div>
 
