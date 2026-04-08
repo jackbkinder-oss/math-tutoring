@@ -1,5 +1,5 @@
 import React from 'react';
-import { BlockMath } from 'react-katex';
+import { BlockMath } from './KaTeX';
 import { animations } from './MathAnimations';
 
 const AnimationGallery = () => {

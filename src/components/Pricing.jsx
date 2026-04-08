@@ -1,12 +1,11 @@
 import React from 'react';
-import { InlineMath } from 'react-katex';
+import { InlineMath } from './KaTeX';
 import { motion } from 'framer-motion';
 import MagneticButton from './MagneticButton';
 
+import { openCalBooking } from './BookingModal';
+
 const Pricing = () => {
-  const handleBooking = (paymentMethod) => {
-    window.dispatchEvent(new CustomEvent('openBooking', { detail: { payment: paymentMethod } }));
-  };
 
   return (
     <section id="pricing" style={styles.section}>
@@ -40,23 +39,16 @@ const Pricing = () => {
               </div>
             </div>
             <div style={styles.cardBottom}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <MagneticButton style={{ width: '100%' }}>
-                  <button className="btn-secondary" style={{width: '100%'}} onClick={() => handleBooking('card')}>
-                    Book Online (Standard)
-                  </button>
-                </MagneticButton>
-                <MagneticButton style={{ width: '100%' }}>
-                  <button className="btn-primary" style={{width: '100%'}} onClick={() => handleBooking('btc')}>
-                    Pay Cash / BTC (-10%)
-                  </button>
-                </MagneticButton>
-              </div>
+              <MagneticButton style={{ width: '100%' }}>
+                <button className="btn-primary" style={{width: '100%'}} onClick={() => openCalBooking('single-session-99')}>
+                  Book Single Session
+                </button>
+              </MagneticButton>
             </div>
           </motion.div>
 
           {/* Bundle Card */}
-          <motion.div 
+          <motion.div
             style={{...styles.card, backgroundColor: 'var(--color-yellow)'}}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -73,18 +65,11 @@ const Pricing = () => {
               </div>
             </div>
             <div style={{...styles.cardBottom, backgroundColor: 'var(--color-beige)'}}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <MagneticButton style={{ width: '100%' }}>
-                  <button className="btn-secondary" style={{width: '100%'}} onClick={() => handleBooking('card')}>
-                    Book Online (Standard)
-                  </button>
-                </MagneticButton>
-                <MagneticButton style={{ width: '100%' }}>
-                  <button className="btn-primary" style={{width: '100%'}} onClick={() => handleBooking('btc')}>
-                    Pay Cash / BTC (-10%)
-                  </button>
-                </MagneticButton>
-              </div>
+              <MagneticButton style={{ width: '100%' }}>
+                <button className="btn-primary" style={{width: '100%'}} onClick={() => openCalBooking('10-session-bundle')}>
+                  Book 10-Session Bundle
+                </button>
+              </MagneticButton>
             </div>
           </motion.div>
 

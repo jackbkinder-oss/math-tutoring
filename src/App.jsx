@@ -9,7 +9,7 @@ import Courses from './components/Courses';
 import AnimationGallery from './components/AnimationGallery';
 import Footer from './components/Footer';
 import LenisWrapper from './components/LenisWrapper';
-import BookingModal from './components/BookingModal';
+import CalEmbed from './components/BookingModal';
 import { animations, selectedPair } from './components/MathAnimations';
 
 const selected = [animations[selectedPair[0]], animations[selectedPair[1]]];
@@ -17,8 +17,6 @@ const selected = [animations[selectedPair[0]], animations[selectedPair[1]]];
 function App() {
   const [appReady, setAppReady] = useState(false);
   const [scrollUnlocked, setScrollUnlocked] = useState(false);
-  const [bookingOpen, setBookingOpen] = useState(false);
-  const [paymentPreselect, setPaymentPreselect] = useState('card');
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   // Lock scroll until hero text animations finish (7.5s from page load)
@@ -36,16 +34,9 @@ function App() {
     window.addEventListener('popstate', handleRouteChange);
     window.addEventListener('routeChange', handleRouteChange);
 
-    const handleOpen = (e) => {
-      setBookingOpen(true);
-      if (e.detail?.payment) setPaymentPreselect(e.detail.payment);
-    };
-    window.addEventListener('openBooking', handleOpen);
-
     return () => {
       window.removeEventListener('popstate', handleRouteChange);
       window.removeEventListener('routeChange', handleRouteChange);
-      window.removeEventListener('openBooking', handleOpen);
     };
   }, []);
 
@@ -73,7 +64,7 @@ function App() {
   return (
     <LenisWrapper enabled={scrollUnlocked}>
       <Preloader onComplete={() => setAppReady(true)} selected={selected} />
-      <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} paymentPreselect={paymentPreselect} />
+      <CalEmbed />
 
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <NavigationBar appReady={appReady} />

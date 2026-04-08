@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { InlineMath } from 'react-katex';
+import { InlineMath } from './KaTeX';
 import { motion } from 'framer-motion';
 
 const Courses = () => {

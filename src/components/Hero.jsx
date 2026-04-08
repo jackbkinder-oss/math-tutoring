@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { InlineMath, BlockMath } from 'react-katex';
+import { InlineMath, BlockMath } from './KaTeX';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import MagneticButton from './MagneticButton';
 

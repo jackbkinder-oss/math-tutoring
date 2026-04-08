@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { InlineMath, BlockMath } from 'react-katex';
+import { InlineMath, BlockMath } from './KaTeX';
 
 const EQUATIONS = [
   "e^{i\\pi} + 1 = 0",

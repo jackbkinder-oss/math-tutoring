@@ -1,5 +1,5 @@
 import React from 'react';
-import { InlineMath } from 'react-katex';
+import { InlineMath } from './KaTeX';
 
 const Footer = () => {
   return (

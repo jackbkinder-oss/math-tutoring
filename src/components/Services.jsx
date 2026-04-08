@@ -1,10 +1,12 @@
 import React from 'react';
-import { InlineMath } from 'react-katex';
+import { InlineMath } from './KaTeX';
 import { motion } from 'framer-motion';
 import MagneticButton from './MagneticButton';
 
+import { openCalBooking } from './BookingModal';
+
 const Services = () => {
-  const handleBooking = () => window.dispatchEvent(new Event('openBooking'));
+  const handleBooking = () => openCalBooking('single-session-99');
 
   return (
     <section id="services" style={styles.section}>

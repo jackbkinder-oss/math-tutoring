@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { InlineMath } from 'react-katex';
+import { InlineMath } from './KaTeX';
 
 const navigateTo = (e, path) => {
   e.preventDefault();

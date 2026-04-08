@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { BlockMath } from 'react-katex';
+import { BlockMath } from './KaTeX';
 
 const InteractiveTopologyAnimation = () => {
   const [time, setTime] = useState(0);
