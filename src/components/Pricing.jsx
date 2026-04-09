@@ -86,14 +86,11 @@ const Pricing = () => {
               <h3 style={styles.calendarTitle}>Available Times</h3>
             </div>
             <div style={styles.calendarBody}>
-              <div style={styles.calendarClip}>
-                <iframe
-                  src="https://calendar.google.com/calendar/embed?src=a54a3efd8277708d5283bd0c9a59bf3d41d495203053872514a20a6e801d528f%40group.calendar.google.com&ctz=Australia%2FSydney&mode=WEEK"
-                  style={{ border: 0, width: '100%', height: '1200px', marginTop: '-350px' }}
-                  scrolling="no"
-                  title="Availability Calendar"
-                />
-              </div>
+              <iframe
+                src="https://calendar.google.com/calendar/embed?src=a54a3efd8277708d5283bd0c9a59bf3d41d495203053872514a20a6e801d528f%40group.calendar.google.com&ctz=Australia%2FSydney&mode=WEEK&showTitle=0&showPrint=0&showCalendars=0&showTz=0"
+                style={{ border: 0, width: '100%', height: '600px' }}
+                title="Availability Calendar"
+              />
             </div>
           </motion.div>
         </div>
@@ -190,10 +187,6 @@ const styles = {
   },
   calendarBody: {
     flex: 1,
-  },
-  calendarClip: {
-    overflow: 'hidden',
-    height: '500px',
   },
 };
 
