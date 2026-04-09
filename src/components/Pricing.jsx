@@ -103,10 +103,16 @@ const Pricing = () => {
               <p style={styles.infoText}>
                 I'm a one-person business, so every session is directly with me. After payment, you'll receive an email with further instructions.
               </p>
+              <p style={styles.infoText}>
+                The calendar shows my real-time availability — check it to see if your preferred time is free before purchasing.
+              </p>
               <div style={styles.infoDetails}>
                 <p style={styles.infoDetail}><strong>Hours:</strong> Mon–Fri, 9am–9pm AEST</p>
                 <p style={styles.infoDetail}><strong>Weekends:</strong> Not available yet</p>
                 <p style={styles.infoDetail}><strong>Bookings outside these hours will not be accepted.</strong></p>
+              </div>
+              <div style={styles.cancellation}>
+                <p style={styles.cancellationText}><strong>CANCELLATION POLICY: All bookings require a minimum of 24 hours notice. Cancellations with less than 24 hours notice are non-refundable.</strong></p>
               </div>
             </motion.div>
           </div>
@@ -234,6 +240,18 @@ const styles = {
     fontWeight: '500',
     marginBottom: '0.25rem',
     color: 'var(--color-brown-dark)',
+  },
+  cancellation: {
+    borderTop: '2px solid var(--color-brown)',
+    marginTop: '0.75rem',
+    paddingTop: '0.75rem',
+  },
+  cancellationText: {
+    fontSize: '0.85rem',
+    fontWeight: '700',
+    color: 'var(--color-brown-dark)',
+    margin: 0,
+    lineHeight: '1.5',
   },
   calendarCard: {
     border: '4px solid var(--color-brown)',
