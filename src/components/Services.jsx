@@ -3,10 +3,11 @@ import { InlineMath } from './KaTeX';
 import { motion } from 'framer-motion';
 import MagneticButton from './MagneticButton';
 
-import { openCalBooking } from './BookingModal';
-
 const Services = () => {
-  const handleBooking = () => openCalBooking('single-session-99');
+  const handleBooking = () => {
+    const el = document.getElementById('pricing');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <section id="services" style={styles.section}>
