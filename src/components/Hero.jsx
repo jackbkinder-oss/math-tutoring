@@ -122,8 +122,9 @@ const Hero = ({ appReady, selected }) => {
               <InlineMath math="\mathbb{E}" />xpert local tutoring with Jack Kinder and premium digital courses designed to make calculus, linear algebra, and advanced math click.
             </p>
             <div style={styles.badgeWrapper}>
-              <div style={styles.discountBadge}>
-                ↓ <InlineMath math="\mathbb{1}" />0% OFF ON CASH & <InlineMath math="\mathbb{B}" />TC PAYMENTS ↓
+              <div style={{ display: 'flex', gap: '0.75rem' }}>
+                <div style={styles.discountBadge}>10% OFF CASH</div>
+                <div style={styles.discountBadge}>20% OFF BTC ₿</div>
               </div>
             </div>
             <div style={styles.buttonGroup}>
