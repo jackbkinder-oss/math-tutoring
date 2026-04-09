@@ -84,7 +84,7 @@ const Pricing = () => {
                       style={{ width: '100%' }}
                       onClick={navigateToPayment}
                     >
-                      Alternative Payment
+                      Pay with Cash / BTC
                     </button>
                   </MagneticButton>
                 </div>
