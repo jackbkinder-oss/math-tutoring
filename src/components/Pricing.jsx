@@ -101,7 +101,7 @@ const Pricing = () => {
             >
               <h4 style={styles.infoTitle}>How Booking Works</h4>
               <p style={styles.infoText}>
-                I'm a one-person business, so every session is directly with me. After payment, you'll receive an email with a link to book your session(s) at a time that works for you.
+                I'm a one-person business, so every session is directly with me. After payment, you'll receive an email with further instructions.
               </p>
               <div style={styles.infoDetails}>
                 <p style={styles.infoDetail}><strong>Hours:</strong> Mon–Fri, 9am–9pm AEST</p>
