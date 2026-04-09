@@ -84,7 +84,7 @@ const Pricing = () => {
                       style={{ width: '100%' }}
                       onClick={navigateToPayment}
                     >
-                      Pay with Cash / BTC
+                      Alternative Payment
                     </button>
                   </MagneticButton>
                 </div>
@@ -112,7 +112,7 @@ const Pricing = () => {
                 <p style={styles.infoDetail}><strong>Bookings outside these hours will not be accepted.</strong></p>
               </div>
               <div style={styles.cancellation}>
-                <p style={styles.cancellationText}><strong>CANCELLATION POLICY: All bookings require a minimum of 24 hours notice. Cancellations with less than 24 hours notice are non-refundable.</strong></p>
+                <p style={styles.cancellationText}><strong>CANCELLATION / NO-SHOW POLICY: All bookings require a minimum of 24 hours notice. Cancellations with less than 24 hours notice and no-shows are non-refundable.</strong></p>
               </div>
             </motion.div>
           </div>

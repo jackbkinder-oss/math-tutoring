@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { InlineMath } from './KaTeX';
 import { motion } from 'framer-motion';
 
+const STRIPE_LINK = 'https://buy.stripe.com/test_bJeaEYdsf2Dv0qo7N70Ba00';
+
 const packages = [
-  { name: '1 Session', standard: 99, cash: 89, btc: 79 },
-  { name: '3 Sessions', standard: 297, cash: 267, btc: 238 },
-  { name: '5 Sessions', standard: 470, cash: 423, btc: 376 },
-  { name: '10 Sessions', standard: 891, cash: 802, btc: 713 },
+  { name: '1 Session', cash: 89, btc: 79 },
+  { name: '3 Sessions', cash: 267, btc: 238 },
+  { name: '5 Sessions', cash: 423, btc: 376 },
+  { name: '10 Sessions', cash: 802, btc: 713 },
 ];
 
 const PaymentTerms = () => {
@@ -33,7 +35,7 @@ const PaymentTerms = () => {
         </button>
 
         <h1 style={styles.title}>
-          <InlineMath math="\mathbb{P}" />ayment Options
+          <InlineMath math="\mathbb{A}" />lternative Payment
         </h1>
 
         {/* Pricing Table */}
@@ -46,7 +48,6 @@ const PaymentTerms = () => {
               <thead>
                 <tr>
                   <th style={styles.th}>Package</th>
-                  <th style={styles.th}>Standard</th>
                   <th style={styles.th}>Cash (-10%)</th>
                   <th style={styles.th}>BTC (-20%)</th>
                 </tr>
@@ -55,7 +56,6 @@ const PaymentTerms = () => {
                 {packages.map((pkg) => (
                   <tr key={pkg.name}>
                     <td style={styles.td}><strong>{pkg.name}</strong></td>
-                    <td style={styles.td}>${pkg.standard}</td>
                     <td style={styles.td}>${pkg.cash}</td>
                     <td style={styles.td}>${pkg.btc}</td>
                   </tr>
@@ -73,21 +73,9 @@ const PaymentTerms = () => {
           <div style={styles.cardBody}>
             <ol style={styles.list}>
               <li style={styles.listItem}><strong>Choose your package</strong> and payment method below</li>
-              <li style={styles.listItem}><strong>Complete payment</strong> via your chosen method</li>
-              <li style={styles.listItem}><strong>Receive a booking link</strong> to schedule your session(s) at a time that suits you</li>
+              <li style={styles.listItem}><strong>Email me</strong> to arrange payment and session details</li>
+              <li style={styles.listItem}><strong>Receive further instructions</strong> on how to book your session(s)</li>
             </ol>
-          </div>
-        </div>
-
-        {/* Standard / Stripe */}
-        <div style={styles.card}>
-          <div style={styles.cardHeader}>
-            <h2 style={styles.cardTitle}>Standard Payment (Stripe)</h2>
-          </div>
-          <div style={styles.cardBody}>
-            <p style={styles.text}>Pay securely online via credit/debit card.</p>
-            <p style={styles.text}>After payment, you'll receive an email with a link to book your session(s).</p>
-            <p style={{...styles.text, fontStyle: 'italic', opacity: 0.7}}>Stripe Payment Links coming soon — for now, email to arrange.</p>
           </div>
         </div>
 
@@ -99,7 +87,7 @@ const PaymentTerms = () => {
           <div style={styles.cardBody}>
             <p style={styles.text}>Cash is accepted for <strong>in-person sessions only</strong>.</p>
             <ol style={styles.list}>
-              <li style={styles.listItem}>Email <a href="mailto:jackbkinder@gmail.com" style={styles.link}>jackbkinder@gmail.com</a> to arrange your session(s)</li>
+              <li style={styles.listItem}>Email <a href="mailto:tutoringkinder@gmail.com" style={styles.link}>tutoringkinder@gmail.com</a> to arrange your session(s)</li>
               <li style={styles.listItem}>Bring the cash amount to your first session</li>
             </ol>
           </div>
@@ -113,9 +101,9 @@ const PaymentTerms = () => {
           <div style={styles.cardBody}>
             <p style={styles.text}>Available for both in-person and online sessions.</p>
             <ol style={styles.list}>
-              <li style={styles.listItem}>Email <a href="mailto:jackbkinder@gmail.com?subject=Bitcoin Payment Enquiry" style={styles.link}>jackbkinder@gmail.com</a> to arrange your session(s)</li>
+              <li style={styles.listItem}>Email <a href="mailto:tutoringkinder@gmail.com?subject=Bitcoin Payment Enquiry" style={styles.link}>tutoringkinder@gmail.com</a> to arrange your session(s)</li>
               <li style={styles.listItem}>You will receive a BTC address to send payment to</li>
-              <li style={styles.listItem}>Once payment is confirmed on-chain, you'll receive a booking link</li>
+              <li style={styles.listItem}>Once payment is confirmed on-chain, you'll receive further instructions</li>
             </ol>
           </div>
         </div>
@@ -123,24 +111,24 @@ const PaymentTerms = () => {
         {/* Cancellation Policy */}
         <div style={styles.card}>
           <div style={{...styles.cardHeader, backgroundColor: 'var(--color-yellow)'}}>
-            <h2 style={{...styles.cardTitle, color: 'var(--color-brown-dark)'}}>Cancellation Policy</h2>
+            <h2 style={{...styles.cardTitle, color: 'var(--color-brown-dark)'}}>Cancellation / No-Show Policy</h2>
           </div>
           <div style={styles.cardBody}>
             <p style={{...styles.text, fontWeight: '700', marginBottom: '1.5rem'}}>
-              All bookings require a minimum of 24 hours notice for cancellation or rescheduling.
+              All bookings require a minimum of 24 hours notice for cancellation or rescheduling. No-shows are treated as late cancellations.
             </p>
 
-            <h3 style={styles.subheading}>Standard / BTC Sessions</h3>
+            <h3 style={styles.subheading}>BTC Sessions</h3>
             <p style={styles.text}>
-              Cancellations with less than 24 hours notice are <strong>non-refundable</strong>. The session fee is forfeited.
+              Cancellations with less than 24 hours notice and no-shows are <strong>non-refundable</strong>. The session fee is forfeited.
             </p>
 
             <h3 style={styles.subheading}>In-Person Cash Sessions</h3>
             <p style={styles.text}>
-              If you cancel an in-person cash session with less than 24 hours notice, you must either:
+              If you cancel with less than 24 hours notice or no-show, you must either:
             </p>
             <ul style={styles.list}>
-              <li style={styles.listItem}>Pay $99 via online bank transfer before your next session, <strong>OR</strong></li>
+              <li style={styles.listItem}>Pay <strong>$99 via <a href={STRIPE_LINK} target="_blank" rel="noopener noreferrer" style={styles.link}>Stripe</a></strong> before your next session, <strong>OR</strong></li>
               <li style={styles.listItem}>Pay double in cash at your next in-person session to cover both the missed and upcoming session</li>
             </ul>
           </div>
@@ -158,7 +146,7 @@ const PaymentTerms = () => {
             I have read and agree to the above payment terms and cancellation policy.
           </label>
           <a
-            href="mailto:jackbkinder@gmail.com?subject=Session Booking Enquiry&body=Hi Jack,%0A%0AI'd like to book sessions and pay via [Standard/Cash/Bitcoin].%0A%0APackage: [1/3/5/10 sessions]%0A%0AI have read and agreed to the payment terms and cancellation policy.%0A%0APreferred day/time:%0ASubject:%0A"
+            href="mailto:tutoringkinder@gmail.com?subject=Session Booking Enquiry&body=Hi Jack,%0A%0AI'd like to book sessions and pay via [Cash/Bitcoin].%0A%0APackage: [1/3/5/10 sessions]%0A%0AI have read and agreed to the payment terms and cancellation policy.%0A%0APreferred day/time:%0ASubject:%0A"
             className="btn-primary"
             style={{
               ...styles.contactBtn,
